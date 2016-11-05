@@ -9,5 +9,8 @@ import Foundation
 import Yesod.Core
 
 import Handler.Home
+import Handler.Create
+import Handler.View
+import Handler.Edit
 
 mkYesodDispatch "App" resourcesApp

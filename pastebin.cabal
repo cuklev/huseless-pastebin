@@ -10,6 +10,9 @@ executable          pastebin
                     Foundation
 
                     Handler.Home
+                    Handler.Create
+                    Handler.View
+                    Handler.Edit
 
   ghc-options:      -Wall -fwarn-tabs -O2
 

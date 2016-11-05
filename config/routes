@@ -1,1 +1,4 @@
-/              HomeR GET
+/              HomeR   GET
+/create        CreateR GET POST
+/view          ViewR   GET
+/edit          EditR   GET POST

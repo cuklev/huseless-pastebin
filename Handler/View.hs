@@ -1,12 +1,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE QuasiQuotes       #-}
 {-# LANGUAGE TemplateHaskell   #-}
-module Handler.Home where
+module Handler.View where
 
 import Foundation
 import Yesod.Core
 
-getHomeR :: Handler Html
-getHomeR = defaultLayout $ do
+getViewR :: Handler Html
+getViewR = defaultLayout $ do
     setTitle "Pastebin"
-    $(whamletFile "templates/home.hamlet")
+    $(whamletFile "templates/view.hamlet")
