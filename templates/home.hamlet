@@ -1,2 +1,6 @@
 <h1>Pastebin
 <a href=@{CreateR}>Create a paste
+<ul>
+  $forall p <- pastes
+    <li>
+      <a href=@{ViewR $ pasteViewId p}>#{pasteFilename p}

@@ -1,4 +1,4 @@
 /              HomeR   GET
 /create        CreateR GET POST
 /view/#Text    ViewR   GET
-/edit          EditR   GET POST
+/edit/#Text    EditR   GET POST

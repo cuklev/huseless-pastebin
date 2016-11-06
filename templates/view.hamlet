@@ -1,2 +1,5 @@
 <h1>Pastebin
-<h2>#{v}
+<h2>#{pasteFilename paste}
+<pre>
+  <code>
+    #{pasteContents paste}

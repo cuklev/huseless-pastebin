@@ -28,8 +28,7 @@ postCreateR = do
     case res of
         FormSuccess paste -> do
             _ <- runDB $ insert paste
-            let (Paste _ _ v _) = paste
-            redirect $ ViewR v
+            redirect $ EditR $ pasteEditId paste
 --        _ -> error "pesho"
 
 pasteForm :: Form Paste

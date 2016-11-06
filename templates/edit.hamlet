@@ -1,5 +1,13 @@
 <h1>Pastebin
-<form action="POST">
-  <input name="paste-fname">
-  <textarea name="paste-content">
-  <input type="submit">
+<h2>#{pasteFilename paste}
+<p>
+  <a href=@{ViewR $ pasteViewId paste}>View only link
+<p>
+  <a href=@{EditR p}>Edit link
+<pre>
+  <code>
+    #{pasteContents paste}
+<form method=post enctype=#{enctype}>
+  ^{pasteW}
+  <div>
+    <input type=submit>
