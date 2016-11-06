@@ -19,10 +19,12 @@ executable          pastebin
   build-depends:  base
                 , yesod-core
                 , yesod-persistent
+                , yesod-form
                 , persistent
                 , persistent-sqlite
                 , persistent-template
                 , text
                 , monad-logger
+                , transformers
 
   ghc-options:    -threaded -O2 -rtsopts -with-rtsopts=-N

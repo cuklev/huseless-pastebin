@@ -1,5 +1,2 @@
 <h1>Pastebin
-<form action="POST">
-  <input name="paste-fname">
-  <textarea name="paste-content">
-  <input type="submit">
+<h2>#{id}

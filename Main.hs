@@ -7,5 +7,6 @@ import Control.Monad.Logger (runStdoutLoggingT)
 
 main :: IO ()
 main = do
-    pool <- runStdoutLoggingT $ createSqlitePool "pastebin.db3" 10
+    pool <- runStdoutLoggingT $ createSqlitePool "pastebin.sqlite3" 10
+    runSqlPersistMPool (runMigration migrateAll) pool
     warp 3000 $ App { connPool = pool }
