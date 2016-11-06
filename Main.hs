@@ -4,6 +4,7 @@ import Foundation
 import Yesod.Core
 import Database.Persist.Sqlite
 import Control.Monad.Logger (runStdoutLoggingT)
+import Model
 
 main :: IO ()
 main = do

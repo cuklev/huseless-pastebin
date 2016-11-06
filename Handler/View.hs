@@ -8,6 +8,6 @@ import Yesod.Core
 import Data.Text (Text)
 
 getViewR :: Text -> Handler Html
-getViewR id = defaultLayout $ do
+getViewR v = defaultLayout $ do
     setTitle "Pastebin"
     $(whamletFile "templates/view.hamlet")

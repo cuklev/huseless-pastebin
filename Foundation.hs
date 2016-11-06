@@ -1,24 +1,19 @@
-{-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE TemplateHaskell   #-}
-{-# LANGUAGE TypeFamilies      #-}
-{-# LANGUAGE ViewPatterns      #-}
-{-# LANGUAGE QuasiQuotes       #-}
-{-# LANGUAGE GADTs             #-}
-{-# LANGUAGE MultiParamTypeClasses   #-}
-{-# LANGUAGE EmptyDataDecls #-}
-{-# LANGUAGE GeneralizedNewtypeDeriving #-}
+{-# LANGUAGE OverloadedStrings            #-}
+{-# LANGUAGE TemplateHaskell              #-}
+{-# LANGUAGE TypeFamilies                 #-}
+{-# LANGUAGE ViewPatterns                 #-}
+{-# LANGUAGE QuasiQuotes                  #-}
+{-# LANGUAGE GADTs                        #-}
+{-# LANGUAGE MultiParamTypeClasses        #-}
+{-# LANGUAGE EmptyDataDecls               #-}
+{-# LANGUAGE GeneralizedNewtypeDeriving   #-}
 module Foundation where
 
 import Yesod.Core
 import Yesod.Persist
+import Yesod.Form.Types
 import Data.Text (Text)
 import Database.Persist.Sqlite
-import Yesod.Form.Types
-import Database.Persist
-import Yesod.Form.Functions
-
-import Prelude
-import Control.Applicative
 
 
 data App = App { connPool :: ConnectionPool}
@@ -28,14 +23,6 @@ mkYesodData "App" $(parseRoutesFile "config/routes")
 instance Yesod App where
     makeSessionBackend _ = Just <$> defaultClientSessionBackend 120 "config/client_session_key.aes"
 
-
-share [mkPersist sqlSettings, mkMigrate "migrateAll"] [persistLowerCase|
-Paste
-    filename Text
-    contents Text
-    viewId   Text
-    editId   Text
-|]
 
 instance YesodPersist App where
     type YesodPersistBackend App = SqlBackend

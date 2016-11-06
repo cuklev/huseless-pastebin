@@ -12,6 +12,8 @@ import Yesod.Persist
 import Yesod.Form.Functions
 import Yesod.Form.Types
 import Yesod.Form.Fields
+import Helpers.RandID
+import Model
 
 getCreateR :: Handler Html
 getCreateR = do
@@ -25,13 +27,14 @@ postCreateR = do
     ((res, pasteW), enctype) <- runFormPost pasteForm
     case res of
         FormSuccess paste -> do
-            runDB $ insert paste
-            redirect $ ViewR "spam"
+            _ <- runDB $ insert paste
+            let (Paste _ _ v _) = paste
+            redirect $ ViewR v
 --        _ -> error "pesho"
 
 pasteForm :: Form Paste
 pasteForm = renderDivs $ Paste
     <$> areq textField "Filename" Nothing
     <*> areq textField "Contents" Nothing
-    <*> pure "Pesho"
-    <*> pure "Gosho"
+    <*> lift (liftIO randID)
+    <*> lift (liftIO randID)
