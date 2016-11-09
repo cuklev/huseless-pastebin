@@ -16,6 +16,8 @@ executable          pastebin
                     Handler.Edit
                     Handler.Error
 
+                    Model
+
                     Helpers.RandID
 
   ghc-options:      -Wall -fwarn-tabs -O2
