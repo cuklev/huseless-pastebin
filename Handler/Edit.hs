@@ -15,11 +15,14 @@ import Handler.Create (pasteForm)
 getEditR :: Text -> Handler Html
 getEditR p = do
     pastes <- runDB $ selectList [ PasteEditId ==. p ] [ LimitTo 1 ]
-    let paste = entityVal $ head pastes
-    (pasteW, enctype) <- generateFormPost $ pasteForm $ Just paste
-    defaultLayout $ do
-        setTitle "Pastebin"
-        $(whamletFile "templates/edit.hamlet")
+    case pastes of
+        [x] -> do
+            let paste = entityVal x
+            (pasteW, enctype) <- generateFormPost $ pasteForm $ Just paste
+            defaultLayout $ do
+                setTitle "Pastebin"
+                $(whamletFile "templates/edit.hamlet")
+        _ -> redirect ErrorR
 
 postEditR :: Text -> Handler Html
 postEditR p = do

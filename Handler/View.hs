@@ -11,8 +11,11 @@ import Model
 
 getViewR :: Text -> Handler Html
 getViewR p = do
-    pastes <- runDB $ selectList [ PasteViewId ==. p ] [LimitTo 1]
-    let paste = entityVal $ head pastes
-    defaultLayout $ do
-        setTitle "Pastebin"
-        $(whamletFile "templates/view.hamlet")
+    pastes <- runDB $ selectList [ PasteViewId ==. p ] [ LimitTo 1 ]
+    case pastes of
+        [x] -> do
+            let paste = entityVal x
+            defaultLayout $ do
+                setTitle "Pastebin"
+                $(whamletFile "templates/view.hamlet")
+        _ -> redirect ErrorR
