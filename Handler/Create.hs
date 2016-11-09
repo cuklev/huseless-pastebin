@@ -21,7 +21,7 @@ getCreateR = do
 
 postCreateR :: Handler Html
 postCreateR = do
-    ((res, pasteW), enctype) <- runFormPost $ pasteForm Nothing
+    ((res, _), _) <- runFormPost $ pasteForm Nothing
     case res of
         FormSuccess paste -> do
             _ <- runDB $ insert paste

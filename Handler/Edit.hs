@@ -23,7 +23,7 @@ getEditR p = do
 
 postEditR :: Text -> Handler Html
 postEditR p = do
-    ((res, pasteW), enctype) <- runFormPost $ pasteForm Nothing
+    ((res, _), _) <- runFormPost $ pasteForm Nothing
     case res of
         FormSuccess paste -> do
             _ <- runDB $ updateWhere [ PasteEditId ==. p ] [ PasteFilename =. pasteFilename paste, PasteContents =. pasteContents paste ]
