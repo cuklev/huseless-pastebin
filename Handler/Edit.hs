@@ -7,9 +7,7 @@ import Foundation
 import Yesod.Core
 import Yesod.Persist
 import Data.Text (Text)
-import Database.Persist
 import Yesod.Form.Functions
-import Yesod.Form.Fields
 import Yesod.Form.Types
 import Model
 import Handler.Create (pasteForm)
@@ -30,3 +28,4 @@ postEditR p = do
         FormSuccess paste -> do
             _ <- runDB $ updateWhere [ PasteEditId ==. p ] [ PasteFilename =. pasteFilename paste, PasteContents =. pasteContents paste ]
             redirect $ EditR p
+        _ -> redirect ErrorR

@@ -3,6 +3,7 @@ version:            0.0.0
 cabal-version:      >= 1.8
 build-type:         Simple
 extra-source-files: config/routes
+                    config/models
 
 executable          pastebin
   main-is:          Main.hs
@@ -13,6 +14,7 @@ executable          pastebin
                     Handler.Create
                     Handler.View
                     Handler.Edit
+                    Handler.Error
 
                     Helpers.RandID
 

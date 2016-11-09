@@ -12,5 +12,6 @@ import Handler.Home
 import Handler.Create
 import Handler.View
 import Handler.Edit
+import Handler.Error
 
 mkYesodDispatch "App" resourcesApp

@@ -9,8 +9,8 @@ import Yesod.Persist
 import Yesod.Form.Functions
 import Yesod.Form.Types
 import Yesod.Form.Fields
-import Helpers.RandID
 import Model
+import Helpers.RandID
 
 getCreateR :: Handler Html
 getCreateR = do
@@ -26,14 +26,14 @@ postCreateR = do
         FormSuccess paste -> do
             _ <- runDB $ insert paste
             redirect $ EditR $ pasteEditId paste
---        _ -> error "pesho"
+        _ -> redirect ErrorR
 
 pasteForm :: Maybe Paste -> Form Paste
 pasteForm mpaste = renderDivs $ Paste
     <$> areq textField "Filename" (fmap pasteFilename mpaste)
     <*> areq textareaField contentsSettings (fmap pasteContents mpaste)
-    <*> pure ""
-    <*> pure ""
+    <*> lift (liftIO randID)
+    <*> lift (liftIO randID)
     where contentsSettings = FieldSettings
             { fsLabel = "Contents"
             , fsTooltip = Nothing

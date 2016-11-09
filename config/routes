@@ -2,3 +2,4 @@
 /create        CreateR GET POST
 /view/#Text    ViewR   GET
 /edit/#Text    EditR   GET POST
+/error         ErrorR  GET

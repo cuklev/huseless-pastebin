@@ -7,7 +7,6 @@ import Foundation
 import Yesod.Core
 import Yesod.Persist
 import Data.Text (Text)
-import Database.Persist
 import Model
 
 getViewR :: Text -> Handler Html
