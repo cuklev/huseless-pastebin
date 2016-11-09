@@ -12,27 +12,21 @@ import Yesod.Form.Functions
 import Yesod.Form.Fields
 import Yesod.Form.Types
 import Model
+import Handler.Create (pasteForm)
 
 getEditR :: Text -> Handler Html
 getEditR p = do
-    (pasteW, enctype) <- generateFormPost pasteForm
-    pastes <- runDB $ selectList [ PasteEditId ==. p ] [LimitTo 1]
+    pastes <- runDB $ selectList [ PasteEditId ==. p ] [ LimitTo 1 ]
     let paste = entityVal $ head pastes
+    (pasteW, enctype) <- generateFormPost $ pasteForm $ Just paste
     defaultLayout $ do
         setTitle "Pastebin"
         $(whamletFile "templates/edit.hamlet")
 
 postEditR :: Text -> Handler Html
 postEditR p = do
-    ((res, pasteW), enctype) <- runFormPost pasteForm
+    ((res, pasteW), enctype) <- runFormPost $ pasteForm Nothing
     case res of
         FormSuccess paste -> do
             _ <- runDB $ updateWhere [ PasteEditId ==. p ] [ PasteFilename =. pasteFilename paste, PasteContents =. pasteContents paste ]
             redirect $ EditR p
-
-pasteForm :: Form Paste
-pasteForm = renderDivs $ Paste
-    <$> areq textField "Filename" Nothing
-    <*> areq textareaField "Contents" Nothing
-    <*> pure ""
-    <*> pure ""
