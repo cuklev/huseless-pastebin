@@ -34,6 +34,6 @@ postCreateR = do
 pasteForm :: Form Paste
 pasteForm = renderDivs $ Paste
     <$> areq textField "Filename" Nothing
-    <*> areq textField "Contents" Nothing
+    <*> areq textareaField "Contents" Nothing
     <*> lift (liftIO randID)
     <*> lift (liftIO randID)

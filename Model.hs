@@ -11,6 +11,7 @@ module Model where
 import Data.Text (Text)
 import Database.Persist.TH
 import Database.Persist.Quasi
+import Yesod.Form.Fields (Textarea)
 
 share [mkPersist sqlSettings, mkMigrate "migrateAll"]
     $(persistFileWith lowerCaseSettings "config/models")

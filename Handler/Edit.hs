@@ -33,6 +33,6 @@ postEditR p = do
 pasteForm :: Form Paste
 pasteForm = renderDivs $ Paste
     <$> areq textField "Filename" Nothing
-    <*> areq textField "Contents" Nothing
+    <*> areq textareaField "Contents" Nothing
     <*> pure ""
     <*> pure ""

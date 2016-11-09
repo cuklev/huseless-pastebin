@@ -1,5 +1,5 @@
 Paste
    filename Text
-   contents Text
+   contents Textarea
    viewId   Text
    editId   Text
