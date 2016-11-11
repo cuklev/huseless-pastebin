@@ -3,3 +3,4 @@ Paste
    contents Textarea
    viewId   Text
    editId   Text
+   timestamp UTCTime

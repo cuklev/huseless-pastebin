@@ -11,6 +11,7 @@ import Yesod.Form.Types
 import Yesod.Form.Fields
 import Model
 import Helpers.RandID
+import Data.Time.Clock (getCurrentTime)
 
 getCreateR :: Handler Html
 getCreateR = do
@@ -34,6 +35,7 @@ pasteForm mpaste = renderDivs $ Paste
     <*> areq textareaField contentsSettings (fmap pasteContents mpaste)
     <*> lift (liftIO randID)
     <*> lift (liftIO randID)
+    <*> lift (liftIO getCurrentTime)
     where contentsSettings = FieldSettings
             { fsLabel = "Contents"
             , fsTooltip = Nothing

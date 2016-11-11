@@ -10,7 +10,7 @@ import Model
 
 getHomeR :: Handler Html
 getHomeR = do
-    pasteEnt <- runDB $ selectList [] [ LimitTo 20, Desc PasteId ]
+    pasteEnt <- runDB $ selectList [] [ LimitTo 20, Desc PasteTimestamp ]
     let pastes = map entityVal pasteEnt
     defaultLayout $ do
         setTitle "Pastebin"

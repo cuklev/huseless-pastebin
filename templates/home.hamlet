@@ -4,3 +4,4 @@
   $forall p <- pastes
     <li>
       <a href=@{ViewR $ pasteViewId p}>#{pasteFilename p}
+      created on #{show $ pasteTimestamp p}
