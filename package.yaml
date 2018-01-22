@@ -1,0 +1,33 @@
+name:    huseless-pastebin
+version: "0.0.0"
+
+dependencies:
+- base
+- text
+- persistent-sqlite
+- yesod-core
+
+# The library contains all of our application code. The executable
+# defined below is just a thin wrapper.
+library:
+  source-dirs: src
+  dependencies:
+    - persistent
+    - persistent-template
+    - time
+    - yesod-form
+    - yesod-persistent
+    - random
+
+# Runnable executable for our application
+executables:
+  pastebin:
+    main: Main.hs
+    source-dirs: app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - monad-logger
+    - huseless-pastebin
